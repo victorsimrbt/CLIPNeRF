@@ -566,6 +566,8 @@ def config_parser():
                         help='frequency of testset saving')
     parser.add_argument("--i_video",   type=int, default=200,
                         help='frequency of render_poses video saving')
+    parser.add_argument("--N_iters", type=int, default=200000, 
+                        help='number of iters')
     # clip constrain
     parser.add_argument("--description", type=str, default="A green excavator", help="the text that guides the editing/generation (Or: A photo of a XXX excavator)")
     parser.add_argument("--use_clip", action='store_true', help='whether use clip loss')
@@ -744,7 +746,7 @@ def train():
         rays_rgb = torch.Tensor(rays_rgb).to(device)
 
 
-    N_iters = 210000 + 1
+    N_iters = args.N_iters + 1
     print('Begin')
     print('TRAIN views are', i_train)
     print('TEST views are', i_test)
